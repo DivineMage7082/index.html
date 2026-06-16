@@ -339,15 +339,35 @@
       </div>
       <button class="pink-btn sm" onclick="openAddBook()">+ Add Book</button>
     </div>
-    <div class="shelf-section">
-      <div class="shelf-label">📖 Want to Read</div>
-      <div class="shelf" id="shelf-unread"></div>
-    </div>
-    <div class="shelf-section">
-      <div class="shelf-label">✅ Finished</div>
-      <div class="shelf" id="shelf-read"></div>
-    </div>
-  </div>
+<div class="shelf-section">
+<div class="shelf-label">🌈 Yaoi</div>
+<div class="shelf" id="yaoi-shelf"></div>
+</div>
+
+<div class="shelf-section">
+<div class="shelf-label">🕯️🥀 Dark romance</div>
+<div class="shelf" id="dark-romance-shelf"></div>
+</div>
+
+<div class="shelf-section">
+<div class="shelf-label">💌 Shoujo</div>
+<div class="shelf" id="shoujo-shelf"></div>
+</div>
+
+<div class="shelf-section">
+<div class="shelf-label">👻 Supernatural/Thriller/Horror</div>
+<div class="shelf" id="supernatural-shelf"></div>
+</div>
+
+<div class="shelf-section">
+<div class="shelf-label">
+<img src="
+
+" alt="Hello Kitty" style="height: 18px; width: auto; vertical-align: middle; margin-right: 4px;">
+Isekai
+</div>
+<div class="shelf" id="isekai-shelf"></div>
+</div>​​
 
   <!-- NOTES -->
   <div id="tab-notes" class="tab-content">
@@ -540,13 +560,23 @@ function saveNote2(id){const h=data.hobbies.find(h=>h.id===id);h.note=document.g
 function cancelNote2(id){document.getElementById("noteBox2-"+id).style.display="";document.getElementById("noteEdit2-"+id).style.display="none";}
 
 // BOOKSHELF
-function renderBooks(){
-  const unread=data.books.filter(b=>!b.read);
-  const read=data.books.filter(b=>b.read);
-  document.getElementById("bookCount").textContent=data.books.length;
-  document.getElementById("readCount").textContent=read.length;
-  renderShelf("shelf-unread",unread);
-  renderShelf("shelf-read",read);
+function renderBooks() {
+ // Filters your books based on the exact genre tags
+ const yaoiBooks = data.books.filter(b => b.status === 'yaoi');
+ const darkRomanceBooks = data.books.filter(b => b.status === 'dark-romance');
+ const shoujoBooks = data.books.filter(b => b.status === 'shoujo');
+ const supernaturalBooks = data.books.filter(b => b.status === 'supernatural');
+ const isekaiBooks = data.books.filter(b => b.status === 'isekai');
+
+ // Counts your total collection size
+ document.getElementById("bookcount").textContent = data.books.length;
+
+ // Renders the books onto your brand new gorgeous shelves!
+ renderShelf("yaoi-shelf", yaoiBooks);
+ renderShelf("dark-romance-shelf", darkRomanceBooks);
+ renderShelf("shoujo-shelf", shoujoBooks);
+ renderShelf("supernatural-shelf", supernaturalBooks);
+ renderShelf("isekai-shelf", isekaiBooks);
 }
 
 function renderShelf(shelfId,books){
