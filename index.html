@@ -540,14 +540,13 @@ function renderTracker(){
 }
 function editNote(id){const h=data.hobbies.find(h=>h.id===id);document.getElementById("noteBox-"+id).style.display="none";document.getElementById("noteEdit-"+id).style.display="block";document.getElementById("noteTa-"+id).value=h.note;document.getElementById("noteTa-"+id).focus();}
 function saveNote(id){const h=data.hobbies.find(h=>h.id===id);h.note=document.getElementById("noteTa-"+id).value;document.getElementById("noteBox-"+id).textContent=h.note||"✏️ tap to add a note...";document.getElementById("noteBox-"+id).style.display="";document.getElementById("noteEdit-"+id).style.display="none";renderNotes();}
-function cancelNote(id){document.getElementById("noteBox-"+id).style.display="";document.getElementById("noteEdit-"+id).style.display="none";}
-function deleteHobby(id){data.hobbies=data.hobbies.filter(h=>h.id!==id);renderTracker();renderHome();renderNotes();}
-function showAddForm(){document.getElementById("addForm").style.display="block";document.getElementById("addHobbyBtn").style.display="none";}
-function hideAddForm(){document.getElementById("addForm").style.display="none";document.getElementById("addHobbyBtn").style.display="";}
-function addHobby(){const name=document.getElementById("newName").value.trim();if(!name)return;const goal=parseInt(document.getElementById("goalRange").value);data.hobbies.push({id:Date.now(),name,icon:selectedIcon,logs:[0,0,0,0,0,0,0],goal,note:""});document.getElementById("newName").value="";hideAddForm();renderTracker();renderHome();renderNotes();}
-
-function renderNotes(){
-  document.getElementById("journalDisplay2").textContent=data.journal||"✏️ tap to write...";
+function editNote(id) { const h=data.hobbies.find(h=>h.id==id);document.getElementById("notebook-"+id).style.display="none";document.getElementById("noteedit-"+id).style.display="block";document.getElementById("noteia-"+id).value=document.getElementById("notetext-"+id).style.display="none"; }
+function saveNote(id) { const h=data.hobbies.find(h=>h.id==id);h.note=document.getElementById("noteia-"+id).value;document.getElementById("notebook-"+id).style.display="block";document.getElementById("noteedit-"+id).style.display="none"; }
+function cancelNote(id) { document.getElementById("notebook-"+id).style.display="block";document.getElementById("noteedit-"+id).style.display="none"; }
+function deleteHobby(id){ data.hobbies=data.hobbies.filter(h=>h.id!=id);renderTracker();renderNotes(); }
+function showAddForm(){ document.getElementById("addform").style.display="block";document.getElementById("addhobbybtn").style.display="none"; }
+function hideAddForm(){ document.getElementById("addform").style.display="none";document.getElementById("addhobbybtn").style.display=""; }
+function addHobby(){ const name=document.getElementById("newName").value.trim();if(!name)return;const goal=parseInt(document.getElementById("goalRange").value
   const nb=document.getElementById("hobbyNotes");nb.innerHTML="";
   data.hobbies.forEach(h=>{
     const card=document.createElement("div");card.className="card";
